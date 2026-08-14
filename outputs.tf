@@ -8,7 +8,7 @@ output "iothub_device_update_accounts_host_name" {
 }
 output "iothub_device_update_accounts_identity" {
   description = "Map of identity values across all iothub_device_update_accounts, keyed the same as var.iothub_device_update_accounts"
-  value       = { for k, v in azurerm_iothub_device_update_account.iothub_device_update_accounts : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_iothub_device_update_account.iothub_device_update_accounts : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "iothub_device_update_accounts_location" {
   description = "Map of location values across all iothub_device_update_accounts, keyed the same as var.iothub_device_update_accounts"
